@@ -32,3 +32,5 @@ class AppointmentsService {
     return appointment;
   }
 }
+
+export default AppointmentsService;
