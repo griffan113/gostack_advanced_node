@@ -9,11 +9,12 @@ interface Request {
   date: Date;
 }
 
-class AppointmentsService {
+class CreateAppointmentsService {
   public async execute({ date, provider }: Request): Promise<Appointment> {
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
     const appointmentDate = startOfHour(date);
+
     const findAppointmentInSameDate = await appointmentsRepository.findByDate(
       appointmentDate
     );
@@ -24,7 +25,7 @@ class AppointmentsService {
 
     const appointment = appointmentsRepository.create({
       provider,
-      date,
+      date: appointmentDate,
     });
 
     await appointmentsRepository.save(appointment);
@@ -33,4 +34,4 @@ class AppointmentsService {
   }
 }
 
-export default AppointmentsService;
+export default CreateAppointmentsService;
