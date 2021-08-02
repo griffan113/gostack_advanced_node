@@ -40,7 +40,7 @@ export class AlterProviderFieldToProviderId1627943670809
       'appointments',
       new TableColumn({
         name: 'provider',
-        type: 'uuid',
+        type: 'varchar',
       })
     );
   }
