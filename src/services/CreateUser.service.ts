@@ -29,6 +29,7 @@ class CreateUserService {
 
     await usersRepository.save(user);
 
+    // @ts-ignore
     delete user.password;
 
     return user;
