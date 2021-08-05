@@ -4,6 +4,7 @@ import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import CreateUserService from '../services/CreateUser.service';
 import uploadConfig from '../config/upload';
 import multer from 'multer';
+import UpdateUserAvatarService from '../services/UpdateUserAvatar.service';
 
 const usersRouter = Router();
 const upload = multer(uploadConfig);
@@ -31,7 +32,20 @@ usersRouter.patch(
   ensureAuthenticated,
   upload.single('avatar'),
   async (request, response) => {
-    return response.json({ ok: true });
+    try {
+      const updateUserAvatar = new UpdateUserAvatarService();
+
+      if (!request.file) throw new Error('No files uploaded');
+
+      const user = await updateUserAvatar.execute({
+        user_id: request.user.id,
+        avatar_filename: request.file.filename,
+      });
+
+      return response.json(user);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
   }
 );
 
