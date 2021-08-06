@@ -16,6 +16,10 @@
       "warn",
       "error",
       { "argsIgnorePattern": "_" }
+    ],
+    "@typescript-eslint/interface-name-prefix": [
+      "warn",
+      { "prefixWithI": "always" }
     ]
   }
 }
