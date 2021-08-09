@@ -15,7 +15,7 @@ class Appointment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'uuid' })
+  @Column()
   provider_id: string;
 
   @ManyToOne(() => User)
