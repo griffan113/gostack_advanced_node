@@ -3,3 +3,4 @@ yarn.lock
 /dist
 tmp/*
 !tmp/.gitkeep
+coverage
