@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import User from '@modules/users/infra/typeorm/entities/User';
@@ -8,13 +8,13 @@ class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];
 
   public async findByEmail(email: string): Promise<User | undefined> {
-    const user = this.users.find(({ email }) => email === email);
+    const user = this.users.find((user) => user.email === email);
 
     return user;
   }
 
   public async findById(id: string): Promise<User | undefined> {
-    const user = this.users.find(({ id }) => id === id);
+    const user = this.users.find((user) => user.id === id);
 
     return user;
   }
@@ -23,7 +23,7 @@ class FakeUsersRepository implements IUsersRepository {
     const user = new User();
 
     // Pushes all passaded properties to the user passed in the first param
-    Object.assign(user, { id: uuid(), userData });
+    Object.assign(user, { id: uuid() }, userData);
 
     this.users.push(user);
 
@@ -31,7 +31,9 @@ class FakeUsersRepository implements IUsersRepository {
   }
 
   public async save(user: User): Promise<User> {
-    const findIndex = this.users.findIndex(({ id }) => id === user.id);
+    const findIndex = this.users.findIndex(
+      (findUser) => findUser.id === user.id
+    );
 
     this.users[findIndex] = user;
 
