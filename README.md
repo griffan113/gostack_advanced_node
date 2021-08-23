@@ -18,3 +18,10 @@
 | -------------- | ------------------------------- | ------ |
 | /users         | Create an new user account      | POST   |
 | /users/avatar  | Log in with an existing account | PATCH  |
+
+## Passwords Controller:
+
+| Route/endpoint    | Job                                     | Method |
+| ----------------- | --------------------------------------- | ------ |
+| /passwords/forgot | Send e-mail to user to recover password | POST   |
+| /passwords/reset  | Change user password                    | POST   |
