@@ -14,6 +14,9 @@ class SessionsController {
       password,
     });
 
+    // @ts-ignore
+    delete user.password;
+
     return response.json({ user, token });
   }
 }

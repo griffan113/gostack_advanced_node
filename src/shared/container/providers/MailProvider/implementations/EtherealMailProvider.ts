@@ -48,7 +48,7 @@ class EtherealMailProvider implements IMailProvider {
         name: to.name,
         address: to.email,
       },
-      subject: 'Recuperação de Senha',
+      subject: subject || 'Recuperação de Senha',
       html: await this.mailTemplateProvider.parse(templateData),
     });
 

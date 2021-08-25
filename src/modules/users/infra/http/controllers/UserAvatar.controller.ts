@@ -13,6 +13,9 @@ class UserAvatarController {
       avatar_filename: request.file.filename,
     });
 
+    // @ts-ignore
+    delete user.password;
+
     return response.json(user);
   }
 }

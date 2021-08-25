@@ -14,10 +14,10 @@
 
 ## Users Controller:
 
-| Route/endpoint | Job                             | Method |
-| -------------- | ------------------------------- | ------ |
-| /users         | Create an new user account      | POST   |
-| /users/avatar  | Log in with an existing account | PATCH  |
+| Route/endpoint | Job                       | Method |
+| -------------- | ------------------------- | ------ |
+| /users         | Create a new user account | POST   |
+| /users/avatar  | Update user's avatar      | PATCH  |
 
 ## Passwords Controller:
 
@@ -25,3 +25,10 @@
 | ----------------- | --------------------------------------- | ------ |
 | /passwords/forgot | Send e-mail to user to recover password | POST   |
 | /passwords/reset  | Change user password                    | POST   |
+
+## Profile Controller:
+
+| Route/endpoint   | Job                   | Method |
+| ---------------- | --------------------- | ------ |
+| /profiles/update | Update user's profile | PUT    |
+| /profiles/show   | Return user's profile | GET    |

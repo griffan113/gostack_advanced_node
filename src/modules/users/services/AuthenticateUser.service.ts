@@ -48,9 +48,6 @@ class AuthenticateUserService {
       expiresIn: authConfig.jwt.expiresIn,
     });
 
-    // @ts-ignore
-    delete user.password;
-
     return {
       user,
       token,
