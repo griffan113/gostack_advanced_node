@@ -1,6 +1,12 @@
 /node_modules
 yarn.lock
 /dist
+
 tmp/*
 !tmp/.gitkeep
+
+tmp/uploads/*
+!tmp/uploads/.gitkeep
+!tmp/uploads
+
 coverage
