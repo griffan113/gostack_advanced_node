@@ -32,3 +32,9 @@
 | ---------------- | --------------------- | ------ |
 | /profiles/update | Update user's profile | PUT    |
 | /profiles/show   | Return user's profile | GET    |
+
+## Providers Controller:
+
+| Route/endpoint | Job            | Method |
+| -------------- | -------------- | ------ |
+| /providers     | List providers | GET    |
