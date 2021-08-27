@@ -48,6 +48,8 @@ class AppointmentsRepository implements IAppointmentsRepository {
     const parsedMonth = String(month).padStart(2, '0');
     const parsedDay = String(day).padStart(2, '0');
 
+    // Raw: https://orkhan.gitbook.io/typeorm/docs/find-options#advanced-options
+
     const findAppointments = await this.ormRepository.find({
       where: {
         provider_id,
