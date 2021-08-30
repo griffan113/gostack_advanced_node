@@ -43,12 +43,12 @@ class ListProviderDayAvailabilityService {
       (_, index) => index + hourStart
     );
 
+    const currentDate = new Date(Date.now());
+
     const avaliability = eachHourArray.map((hour) => {
       const hasAppointmentInHour = appointments.find(
         (appointment) => getHours(appointment.date) === hour
       );
-
-      const currentDate = new Date(new Date());
 
       const compareDate = new Date(year, month - 1, day, hour);
 
