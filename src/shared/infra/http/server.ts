@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
+import { errors } from 'celebrate';
 
 import routes from './routes';
 import uploadConfig from '../../../config/upload';
@@ -15,6 +16,8 @@ const app = express();
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
+
+app.use(errors());
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
