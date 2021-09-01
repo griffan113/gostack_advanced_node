@@ -13,7 +13,7 @@ import '@shared/infra/typeorm';
 import '@shared/container';
 
 const app = express();
-app.use(cors({ origin: ['http://localhost:3333'] }));
+app.use(cors({ origin: ['http://localhost:3000'] }));
 
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
