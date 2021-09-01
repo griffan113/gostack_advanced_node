@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import { errors } from 'celebrate';
+import cors from 'cors';
 
 import routes from './routes';
 import uploadConfig from '../../../config/upload';
@@ -12,6 +13,7 @@ import '@shared/infra/typeorm';
 import '@shared/container';
 
 const app = express();
+app.use(cors({ origin: ['http://localhost:3000'] }));
 
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
