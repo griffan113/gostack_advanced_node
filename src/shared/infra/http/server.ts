@@ -1,9 +1,11 @@
+import('dotenv').then((f) => f.config());
+
 import 'reflect-metadata';
 
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
-import { errors } from 'celebrate';
 import cors from 'cors';
+import { errors } from 'celebrate';
 
 import routes from './routes';
 import uploadConfig from '../../../config/upload';
@@ -13,6 +15,8 @@ import '@shared/infra/typeorm';
 import '@shared/container';
 
 const app = express();
+const port = process.env.PORT || 3333;
+
 app.use(cors({ origin: ['http://localhost:3000'] }));
 
 app.use(express.json());
@@ -37,6 +41,6 @@ app.use(
   }
 );
 
-app.listen(3333, () => {
-  console.log('Server running on port 3333');
+app.listen(port, () => {
+  console.log('Server running on port: ' + port);
 });

@@ -1,6 +1,7 @@
 import { parseISO } from 'date-fns';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import CreateAppointmentsService from '@modules/appointments/services/CreateAppointment.service';
 
@@ -18,7 +19,7 @@ class AppointmentsController {
       user_id,
     });
 
-    return response.json(appointment);
+    return response.json(classToClass(appointment));
   }
 }
 

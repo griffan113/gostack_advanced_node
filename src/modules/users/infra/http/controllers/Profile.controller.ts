@@ -1,7 +1,9 @@
-import ShowProfileService from '@modules/users/services/ShowProfile.service';
-import UpdateProfileService from '@modules/users/services/UpdateProfile.service';
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
+import ShowProfileService from '@modules/users/services/ShowProfile.service';
+import UpdateProfileService from '@modules/users/services/UpdateProfile.service';
 
 class ProfileController {
   public async show(request: Request, response: Response): Promise<Response> {
@@ -14,7 +16,7 @@ class ProfileController {
     // @ts-ignore
     delete user.password;
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
@@ -34,7 +36,7 @@ class ProfileController {
     // @ts-ignore
     delete user.password;
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 }
 

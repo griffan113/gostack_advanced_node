@@ -1,5 +1,6 @@
 import { Joi, Segments, celebrate } from 'celebrate';
 import { Router } from 'express';
+
 import ProfileController from '../controllers/Profile.controller';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
