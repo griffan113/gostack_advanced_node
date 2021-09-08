@@ -4,9 +4,16 @@ import { container } from 'tsyringe';
 
 import ListProviderDayAvailabilityService from '@modules/appointments/services/ListProviderDayAvailability.service';
 
+type RequestQueryParams = {
+  month: number;
+  year: number;
+  day: number;
+};
 class ProviderDayAvailabilityController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const { provider_id, month, year, day } = request.body;
+    const { provider_id } = request.body;
+    //@ts-ignore
+    const { month, year, day } = request.query as RequestQueryParams;
 
     const listProviderDayAvailability = container.resolve(
       ListProviderDayAvailabilityService
