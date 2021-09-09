@@ -11,7 +11,7 @@ type RequestQueryParams = {
 };
 class ProviderDayAvailabilityController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const { provider_id } = request.body;
+    const { provider_id } = request.params;
     //@ts-ignore
     const { month, year, day } = request.query as RequestQueryParams;
 
