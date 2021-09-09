@@ -23,7 +23,7 @@ export default class CreateUserTokens1629805539218
           },
           {
             name: 'user_id',
-            type: 'uuid',
+            type: 'varchar',
           },
           {
             name: 'created_at',

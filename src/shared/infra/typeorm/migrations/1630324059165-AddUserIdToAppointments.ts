@@ -13,7 +13,7 @@ export default class AddUserIdToAppointments1630324059165
       'appointments',
       new TableColumn({
         name: 'user_id',
-        type: 'uuid',
+        type: 'varchar',
         isNullable: true,
       })
     );
