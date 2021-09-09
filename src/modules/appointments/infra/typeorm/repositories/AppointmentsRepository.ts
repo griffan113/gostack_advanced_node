@@ -13,60 +13,66 @@ class AppointmentsRepository implements IAppointmentsRepository {
     this.ormRepository = getRepository(Appointment);
   }
 
-  public async findByDate(date: Date): Promise<Appointment | undefined> {
-    const findAppointment = await this.ormRepository.findOne({ date });
+  public async findByDate(
+    date: Date,
+    provider_id: string
+  ): Promise<Appointment | undefined> {
+    const findAppointment = await this.ormRepository.findOne({
+      where: { date, provider_id },
+    });
 
     return findAppointment;
   }
 
   public async findAllInMonthFromProvider({
+    provider_id,
     month,
     year,
-    provider_id,
   }: IFindAllInMonthFromProviderDTO): Promise<Appointment[]> {
     const parsedMonth = String(month).padStart(2, '0');
 
-    const findAppointments = await this.ormRepository.find({
+    const appointments = await this.ormRepository.find({
       where: {
         provider_id,
         date: Raw(
           (dateFieldName) =>
-            `to_char(${dateFieldName},  'MM-YYYY') = '${parsedMonth}-${year}'`
+            `to_char(${dateFieldName}, 'MM-YYYY') = '${parsedMonth}-${year}'`
         ),
       },
     });
+    console.log(appointments);
 
-    return findAppointments;
+    return appointments;
   }
 
   public async findAllInDayFromProvider({
-    month,
-    day,
-    year,
     provider_id,
+    day,
+    month,
+    year,
   }: IFindAllInDayFromProviderDTO): Promise<Appointment[]> {
-    const parsedMonth = String(month).padStart(2, '0');
     const parsedDay = String(day).padStart(2, '0');
+    const parsedMonth = String(month).padStart(2, '0');
 
-    // Raw: https://orkhan.gitbook.io/typeorm/docs/find-options#advanced-options
-
-    const findAppointments = await this.ormRepository.find({
+    const appointments = await this.ormRepository.find({
       where: {
         provider_id,
         date: Raw(
           (dateFieldName) =>
-            `to_char(${dateFieldName},  'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`
+            `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`
         ),
       },
+      relations: ['user'],
     });
+    console.log(appointments);
 
-    return findAppointments;
+    return appointments;
   }
 
   public async create({
-    date,
     provider_id,
     user_id,
+    date,
   }: ICreateAppointmentDTO): Promise<Appointment> {
     const appointment = this.ormRepository.create({
       provider_id,
