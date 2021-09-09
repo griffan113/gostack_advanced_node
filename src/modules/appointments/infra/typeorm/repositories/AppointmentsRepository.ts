@@ -40,7 +40,6 @@ class AppointmentsRepository implements IAppointmentsRepository {
         ),
       },
     });
-    console.log(appointments);
 
     return appointments;
   }
@@ -64,7 +63,6 @@ class AppointmentsRepository implements IAppointmentsRepository {
       },
       relations: ['user'],
     });
-    console.log(appointments);
 
     return appointments;
   }

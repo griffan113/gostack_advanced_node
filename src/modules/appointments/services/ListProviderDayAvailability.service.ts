@@ -35,7 +35,6 @@ class ListProviderDayAvailabilityService {
         month,
         day,
       });
-    console.log(appointments);
 
     const hourStart = 8;
 
@@ -52,9 +51,6 @@ class ListProviderDayAvailabilityService {
       );
 
       const compareDate = new Date(year, month - 1, day, hour);
-      console.log('compareDate' + compareDate);
-      console.log(hasAppointmentInHour);
-      console.log(!hasAppointmentInHour && isAfter(compareDate, currentDate));
 
       return {
         hour,
