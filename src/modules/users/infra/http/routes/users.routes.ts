@@ -15,6 +15,7 @@ const upload = multer(uploadConfig);
 
 usersRouter.post(
   '/',
+  upload.single('avatar'),
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),

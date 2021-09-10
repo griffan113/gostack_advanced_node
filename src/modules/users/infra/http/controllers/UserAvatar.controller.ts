@@ -9,6 +9,7 @@ class UserAvatarController {
     const updateUserAvatar = container.resolve(UpdateUserAvatarService);
 
     if (!request.file) throw new Error('No files uploaded');
+    console.log(request.file);
 
     const user = await updateUserAvatar.execute({
       user_id: request.user.id,

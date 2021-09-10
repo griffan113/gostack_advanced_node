@@ -1,3 +1,4 @@
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 
@@ -9,6 +10,7 @@ interface IRequest {
   name: string;
   email: string;
   password: string;
+  avatar_filename: string;
 }
 
 @injectable()
@@ -18,20 +20,31 @@ class CreateUserService {
     private readonly usersRepository: IUsersRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider
+    private hashProvider: IHashProvider,
+
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider
   ) {}
 
-  public async execute({ name, email, password }: IRequest): Promise<User> {
+  public async execute({
+    name,
+    email,
+    password,
+    avatar_filename,
+  }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) throw new AppError('Email already used');
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
+    const filename = await this.storageProvider.saveFile(avatar_filename);
+
     const user = await this.usersRepository.create({
       name,
       email,
       password: hashedPassword,
+      avatar: filename,
     });
 
     return user;
