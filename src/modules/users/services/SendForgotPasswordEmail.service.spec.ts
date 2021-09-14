@@ -29,6 +29,7 @@ describe('SendForgotPasswordEmail', () => {
       name: 'John Doe',
       email: 'johndoe@gmail.com',
       password: '123456',
+      avatar: 'avatar.jpg',
     });
 
     await sendForgotPasswordEmailService.execute({
@@ -53,6 +54,7 @@ describe('SendForgotPasswordEmail', () => {
       name: 'John Doe',
       email: 'johndoe@gmail.com',
       password: '123456',
+      avatar: 'avatar.jpg',
     });
 
     await sendForgotPasswordEmailService.execute({

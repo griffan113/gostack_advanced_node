@@ -73,12 +73,6 @@ describe('ListProviderMonthAvailability', () => {
       date: new Date(2020, 4, 20, 17, 0, 0),
     });
 
-    await fakeAppointmentRepository.create({
-      provider_id: 'user',
-      user_id: 'user',
-      date: new Date(2020, 4, 21, 8, 0, 0),
-    });
-
     const availability = await listProviderMonthAvailabilityService.execute({
       provider_id: 'user',
       year: 2020,

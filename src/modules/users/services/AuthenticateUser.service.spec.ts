@@ -1,3 +1,5 @@
+import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 import AppError from '@shared/errors/AppError';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
@@ -8,15 +10,18 @@ let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
 let authenticateUserService: AuthenticateUserService;
 let createUserService: CreateUserService;
+let storageProvider: IStorageProvider;
 
 describe('AuthenticateUser', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeHashProvider = new FakeHashProvider();
+    storageProvider = new FakeStorageProvider();
 
     createUserService = new CreateUserService(
       fakeUsersRepository,
-      fakeHashProvider
+      fakeHashProvider,
+      storageProvider
     );
     authenticateUserService = new AuthenticateUserService(
       fakeUsersRepository,
@@ -29,6 +34,7 @@ describe('AuthenticateUser', () => {
       name: 'John Doe',
       email: 'johndoe@gmail.com',
       password: '123456',
+      avatar_filename: 'avatar.jpg',
     });
 
     const response = await authenticateUserService.execute({
@@ -54,6 +60,7 @@ describe('AuthenticateUser', () => {
       name: 'John Doe',
       email: 'johndoe@gmail.com',
       password: '123456',
+      avatar_filename: 'avatar.jpg',
     });
 
     await expect(
